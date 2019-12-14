@@ -126,10 +126,10 @@
                         <a href="showproduct.php?category=1" class="active"><i class="fa fa-car fa-fw"></i> รถเก๋ง</a>
                     </li>
                     <li>
-                        <a href="#" class="active"><i class="fa fa-truck fa-fw"></i> รถกระบะ</a>
+                        <a href="showproduct.php?category=2" class="active"><i class="fa fa-truck fa-fw"></i> รถกระบะ</a>
                     </li>
                     <li>
-                        <a href="#" class="active"><i class="fa fa-truck fa-fw"></i> รถตู้</a>
+                        <a href="showproduct.php?category=3" class="active"><i class="fa fa-truck fa-fw"></i> รถตู้</a>
                     </li>
                 </ul>
             </div>
