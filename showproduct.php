@@ -143,7 +143,7 @@
         <h1 class="page-header">Car</h1>
     </div>
     <p>
-    <a href="postcar.php" class="btn btn-info pull-right">Post</a>
+    <a href="index.php?category=post" class="btn btn-info pull-right">Post</a>
     </p>
 </div>
         <?php
