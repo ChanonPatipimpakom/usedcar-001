@@ -126,10 +126,10 @@
                         <a href="showproduct.php?category=1" class="active"><i class="fa fa-car fa-fw"></i> รถเก๋ง</a>
                     </li>
                     <li>
-                        <a href="#" class="active"><i class="fa fa-truck fa-fw"></i> รถกระบะ</a>
+                        <a href="showproduct.php?category=2" class="active"><i class="fa fa-truck fa-fw"></i> รถกระบะ</a>
                     </li>
                     <li>
-                        <a href="#" class="active"><i class="fa fa-truck fa-fw"></i> รถตู้</a>
+                        <a href="showproduct.php?category=3" class="active"><i class="fa fa-truck fa-fw"></i> รถตู้</a>
                     </li>
                 </ul>
             </div>
@@ -138,48 +138,56 @@
     <!-- Page Content -->
     <div id="page-wrapper">
         <div class="container-fluid">
+        <div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">Car</h1>
+    </div>
+    <p>
+    <a href="postcar.php" class="btn btn-info pull-right">Post</a>
+    </p>
+</div>
+        <?php
+        if(isset($_GET['category'])){
+            $cate=$_GET['category'];
+        }
+        else{
+            header("location:index.php");
+        }
+        $sql = "SELECT * FROM car WHERE carType=$cate";
+        //include($page);
+        $result = $conn->query($sql);
+        if(!$result){
+            echo "Error During Retrival";
+        }
+        else{
+            //ดึงข้อมูล
+            while($prd=$result->fetch_object()){
+                $prd->id; //$prd["id]
+        ?>
+        <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                <div class="thumbnail">
+                    <a href="productdetail.php?pid=<?php echo $prd->id;?>">
+                        <img src="image/<?php echo $prd->carpic;?>" alt="">
+                    </a>
+                    <div class="caption">
+                    <h3><?php echo $prd->brand;?></h3>
+                    <p><?php echo $prd->modelYear;?></p>
+                    <p><?php echo $prd->license;?></p>
+                    <p><Strong>Price: </Strong><?php echo $prd->price;?><Strong> Bath</Strong></p>
+                    <p>
+                        <a href="editproduct.php?pid=<?php echo $prd->id?>" class="btn btn-warning"><i class="glyphicon glyphicon-pencil"></i></a>
+                        <a href="deleteproduct.php?pid=<?php echo $prd->id?>" class="btn btn-danger linkDelete"><i class="glyphicon glyphicon-trash"></i></a>
+                    </p>
+                    </div>
+                </div>
+            </div>
             <?php
-                if(isset($_GET['category'])){
-                    $menu = $_GET['category'];
                 }
-                else{
-                    $menu="";
-                }
-                switch($menu){
-                    case "all":{
-                        $page = "product.php";
-                        break;
-                    }
-                    case "post":{
-                        $page = "postcar.php";
-                        break;
-                    }
-                    case "edit":{
-                        $page = "edit.php";
-                        break;
-                    }
-                    default:{
-                        $page = "main.php";
-                    }
-                }
-                include($page);
-            ?>           
+            }
+        ?>         
 
         </div>
     </div>
 </div>
-<script>
-    $(document).ready(function(){
-        $(".linkDelete").click(function(){
-            if(confirm("confirm delete?")){
-                return true;
-            }else{
-                return false;
-            }
-
-            return confirm("confirm delete")
-        });
-    });
-</script>
 </body>
 </html>
