@@ -92,6 +92,7 @@
             <div class="form-group">
                 <div class="col-md-6 col-md-offset-3">
                     <input type="hidden" name="hdnProductId" value="<?php echo $prd->id;?>">
+                    <input type="hidden" name="hdnProductPic" value="<?php echo $prd->carpic;?>">
                     <button type="submit" class="btn btn-primary">Save</button>
                     <button type="reset" class="btn btn-danger">Reset</button>
                 </div>

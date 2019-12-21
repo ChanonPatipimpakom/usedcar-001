@@ -13,9 +13,18 @@
     $filename = $_FILES["filePic"]["name"];
     $post = 1;
     $date = "2010-09-17";
+
+    $picture = $_POST["hdnProductPic"];
     //$filename = $_FILES["filePic"]["name"];
 
-    $sql = "UPDATE car SET carType='$type', brand='$brand', model='$color', color='$license', license='$license', province='$pro', modelYear='$year', price='$price', carpic='$filename', postedBy='$post', postedDate='$date' WHERE id = $pid";
+    if($_FILES['filePic']['name']!=""){
+        //อัปโหลดไฟล์โดยเอาชื่อเข้ามาด้วย
+        $picture = $_FILES["filePic"]["name"];
+        //move file
+        move_uploaded_file($_FILES["filePic"]["tmp_name"],"image/".$_FILES["filePic"]["name"]);
+    }
+
+    $sql = "UPDATE car SET carType='$type', brand='$brand', model='$color', color='$license', license='$license', province='$pro', modelYear='$year', price='$price', carpic='$picture', postedBy='$post', postedDate='$date' WHERE id = $pid";
     //echo $sql;
     $result = $conn->query($sql);
         if(!$result){
